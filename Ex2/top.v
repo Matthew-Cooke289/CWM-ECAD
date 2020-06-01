@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Exercise #2 
-// Student Name:
-// Date: 
+// Student Name: Matthew Cooke
+// Date: 1/6/2020
 //
 //  Description: In this exercise, you need to design a multiplexer, where the  
 //  output acts according to the following truth table:
@@ -21,12 +21,26 @@
 `timescale 1ns / 100ps
 
 module mux(
-    //Todo: define inputs here
+    input a,
+    input b,
+    input sel,
+    output out
     );
-    
-    //Todo: define registers and wires here
+	
+	parameter CLK_PERIOD = 10;
+    	reg  clk, out;
 
+	initial begin 
+	  clk=0;   
+	forever
+	#(CLK_PERIOD/2) 
+	clk=~clk;
+	end
 
-    //Todo: define your logic here                 
+    always @(posedge clk)
+	if(sel)
+	out = b;
+	else
+	out = a ;               
       
 endmodule
