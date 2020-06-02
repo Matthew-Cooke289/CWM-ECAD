@@ -19,30 +19,29 @@
 `timescale 1ns / 100ps
 
 module counter(
-   input  clk,
-    input wire rst,
-    input wire enable,
-	input wire direction,
-    output counter_out[7:0]
+    input  clk,
+    input rst,
+    input enable,
+	input direction,
+    output reg [7:0] counter_out
     );
                     
-  reg counter[7:0];
+  
 
 
     always @(posedge clk or posedge rst)     
 	if(rst)       
-	counter <= 8'b00000000;     
+	counter_out <= 8'b00000000;     
 	else 
       if(!enable)
-	counter <= counter;
+	counter_out <= counter_out;
 	else
 	if(direction)
-	counter <= counter + 1'b1;
+	counter_out <= counter_out + 1'b1;
 	else
-	counter <= counter - 1'b1;
+	counter_out <= counter_out - 1'b1;
 
-	counter_out[7:0] <= counter[7:0];
+	
 
 
-      
 endmodule
