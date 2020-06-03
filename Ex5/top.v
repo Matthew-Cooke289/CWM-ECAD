@@ -22,7 +22,7 @@ module lights(
                   
     //Todo: add registers and wires, if needed
 
-	wire [2:0] RAG
+	reg [2:0] RAG
 	
 	
 
@@ -54,6 +54,9 @@ end
 begin
 	assign RAG <= 3'b100;
 end
+	else
+	RAG <= 3"b100;
+	
 end
 
 	assign red = RAG[2];
