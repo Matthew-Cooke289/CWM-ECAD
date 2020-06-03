@@ -16,7 +16,8 @@ parameter CLK_PERIOD = 10;
 
 //Regitsers and wire
 
-	reg clk, err, rst, button
+	reg clk, err, rst, button;
+	wire [2:0] throw ;
 	
 
 // Clock generation
@@ -60,10 +61,8 @@ initial
 	end
 
 //Todo: Instantiate counter module
-counter top (
-	.clk (clk), 
+dice top ( 
      .rst (rst),
-     .enable (enable),
 	.button (button),
      .throw (throw)
      );
