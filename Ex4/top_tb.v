@@ -45,12 +45,14 @@ initial
  	#100;
 	button = 0;
 	 #100;
+	rst = 1;
+ 	#100;
     end
 
 //Todo: Finish test, check for success
 initial 
 	begin
-
+	#600
 	if(throw != 3'b000)
 	begin
 	err <= 1;
@@ -59,10 +61,10 @@ initial
 
 	if (err==1)
 	begin
-	$display("***TEST PASSED! :) ***");
+	$display("***TEST FAILED :( reset doesnt work Final_Counter_Value ==%d, ***", throw);
 	end
 	else begin
-	$display("***TEST FAILED :( Final_Counter_Value ==%d, ***", throw);
+	$display("***TEST PASSED! reset works :) ***");
 	end
 
 	end
