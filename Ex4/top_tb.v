@@ -28,12 +28,19 @@ initial
          #5 
 	clk=~clk;
      end
+	
+	initial begin
+	rst = 1;
+	#100;
+	rst = 0; 
+	end
 
 
 //Todo: User logic
 	initial begin
    
     assign 
+	
 	button = 1;
  	#100;
 	button = 0;
@@ -52,16 +59,17 @@ initial
 
 	if (err==1)
 	begin
-	$display("***TEST FAILED :( Final_Counter_Value ==\d, ***", throw);
+	$display("***TEST PASSED! :) ***");
 	end
 	else begin
-	$display("***TEST PASSED! :) ***");
+	$display("***TEST FAILED :( Final_Counter_Value ==%d, ***", throw);
 	end
 
 	end
 
 //Todo: Instantiate counter module
 dice top ( 
+	.clk (clk),
      .rst (rst),
 	.button (button),
      .throw (throw)
