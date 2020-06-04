@@ -15,37 +15,34 @@
 //
 //  You need to write the whole file.
 //////////////////////////////////////////////////////////////////////////////////
+
 `timescale 1ns / 100ps
 
 module dice(
-     
-	input rst, button,
+	input wire rst, 
+	input wire button, 
+	input wire clk,
 	output reg [2:0] throw 
     );
-    
-    parameter CLK_PERIOD = 10;
-	reg clk
-    	
 
-	initial begin 
-	  clk=0;   
-	forever
-	#(CLK_PERIOD/2) 
-	clk=~clk;
-	end
 
     always @(posedge clk)
+	begin
 	if(rst)
-	throw = 3'b000;
+	throw <= 3'b000;
 	else
-	if(!button && (throw == 3'b000 || 3'b111))
-	throw = 3'b001;
+	if(!button && (throw == 3'b000 | 3'b111))
+	throw <= 3'b001;
 	else
-	if(button && (throw !== 3'b111 || 3'b110))
-	throw = throw + 3'b001;
+	if(!button)
+	throw <= throw;
 	else
-	if(button && (throw == 3'b111 || 3'b110))
-	throw = 3'b001;
+	if(button && (throw !== 3'b111 | 3'b110))
+	throw <= throw + 3'b001;
+	else
+	if(button && (throw == 3'b111 | 3'b110))
+	throw <= 3'b001;
+	end
 
 
                     
