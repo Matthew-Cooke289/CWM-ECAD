@@ -13,54 +13,37 @@
 //           red, amber, green
 //////////////////////////////////////////////////////////////////////////////////
 
+
 `timescale 1ns / 100ps
 
 module lights(
-	input clk,
-	output red, amber, green  
+	input wire clk,
+	output reg red, amber, green  
+	output reg [2:0] RAG
 );
                   
     //Todo: add registers and wires, if needed
-
-	reg [2:0] RAG
-	
-	
 
     //Todo: add user logic
 
 	always @(posedge clk)     
 begin
 	if(RAG == 3'b000 | 3'b101 | 3'b011 | 3'b111)
-begin
-	assign RAG <= 3'b100;
-end
+	reg RAG <= 3'b100;
 	else
 	if(RAG == 3'b100)
-begin
-	assign RAG <= 3'b110;
-end
+	reg RAG <= 3'b110;
 	else
 	if(RAG == 3'b110)
-begin
-	assign RAG <= 3'b001;
-end
+	reg RAG <= 3'b001;
 	else
 	if(RAG == 3'b001)
-begin
-	assign RAG <= 3'b010;
-end
+	reg RAG <= 3'b010;
 	else
 	if(RAG == 3'b010)
-begin
-	assign RAG <= 3'b100;
-end
+	reg RAG <= 3'b100;
 	else
-	RAG <= 3"b100;
-	
+	reg RAG <= 3"b100;
 end
-
-	assign red = RAG[2];
-	assign amber = RAG[1];
-  assign green = RAG[0];
 
 endmodule
